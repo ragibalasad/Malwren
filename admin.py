@@ -1,5 +1,5 @@
+################## A D M I N #########################
 import socket
-from time import sleep
 
 HEADER = 64
 PORT = 5050
@@ -9,16 +9,7 @@ FORMATE = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-while True:
-    try:
-        client.connect(ADDR)
-        print(f"Connected to {SERVER}:{PORT}")
-    except:
-        print("Couldn't connect to the server! Reconnecting...")
-        sleep(1)
-        continue
-    break
+client.connect(ADDR)
 
 def send(msg):
     message = msg.encode(FORMATE)
@@ -29,4 +20,11 @@ def send(msg):
     client.send(send_lenght)
     client.send(message)
 
-send(DISCONNECT_MESSAGE)
+
+################## A D M I N #########################
+send("2004528")
+################## A D M I N #########################
+
+while True:
+    inp = input("@admin~$ ")
+    send(inp)
